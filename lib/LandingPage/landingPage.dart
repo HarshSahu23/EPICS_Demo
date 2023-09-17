@@ -22,6 +22,13 @@ class _MyLandingPageState extends State<MyLandingPage> {
     ServiceScreen(),
     YouScreen(),
   ];
+  final List<String> _titleName = [
+    "Home",
+    "Reports & Diagnosis",
+    "Upload ",
+    "Services & More",
+    "My Profile"
+  ];
 
   static List<BottomNavigationBarItem> getBottomNavBarItem() {
     return const [
@@ -41,11 +48,11 @@ class _MyLandingPageState extends State<MyLandingPage> {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.grid_view_rounded),
-        label: 'Services',
+        label: 'Service',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.person),
-        label: 'Profile',
+        label: 'You',
       )
     ];
   }
@@ -62,7 +69,7 @@ class _MyLandingPageState extends State<MyLandingPage> {
               print("test menu iconButton");
             },
             icon: const Icon(Icons.menu)),
-        title: const Text("App Name"),
+        title: Text(_titleName[_currentIndex]),
         actions: [
           IconButton(
               onPressed: () {
