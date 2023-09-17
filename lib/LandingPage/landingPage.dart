@@ -4,6 +4,7 @@ import 'package:demo_sih7/Screens/Service/serviceScreen.dart';
 import 'package:demo_sih7/Screens/Upload/uploadScreen.dart';
 import 'package:demo_sih7/Screens/You/youScreen.dart';
 import 'package:flutter/material.dart';
+import '../Screens/theme.dart';
 
 class MyLandingPage extends StatefulWidget {
   const MyLandingPage({super.key});
@@ -64,6 +65,7 @@ class _MyLandingPageState extends State<MyLandingPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Themes.bluishClr,
         leading: IconButton(
             onPressed: () {
               print("test menu iconButton");
@@ -81,7 +83,7 @@ class _MyLandingPageState extends State<MyLandingPage> {
       body: Container(
           height: scrHeight, width: scrWidth, child: _children[_currentIndex]),
       bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(canvasColor: Colors.lightBlueAccent),
+          data: Theme.of(context).copyWith(canvasColor: Themes.bluishClr),
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (int index) {
@@ -90,7 +92,7 @@ class _MyLandingPageState extends State<MyLandingPage> {
               });
             },
             items: getBottomNavBarItem(),
-            fixedColor: Color.fromARGB(255, 244, 111, 16),
+            fixedColor: Themes.yellowClr,
             iconSize: 26,
             selectedFontSize: 18,
             selectedIconTheme: const IconThemeData(size: 30),
