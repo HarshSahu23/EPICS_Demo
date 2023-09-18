@@ -1,9 +1,17 @@
 import 'package:demo_sih7/Screens/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 
-class ReportDetails extends StatelessWidget {
+class ReportDetails extends StatefulWidget {
   const ReportDetails({super.key});
+
+  @override
+  State<ReportDetails> createState() => _ReportDetailsState();
+}
+
+class _ReportDetailsState extends State<ReportDetails> {
+  final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +82,19 @@ class ReportDetails extends StatelessWidget {
                                     fontSize: 24.0,
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
+                                Container(
+                                  padding: EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border:
+                                          Border.all(color: Colors.black54)),
                                   child: Image.asset(
-                                    'assets/doctor.png',
-                                    width: 60,
-                                    height: 60,
-                                    fit: BoxFit.contain,
+                                    'assets/chest.png',
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
+                                )
                               ],
                             ),
                           ),
@@ -159,6 +171,7 @@ class ReportDetails extends StatelessWidget {
                                                   decoration:
                                                       TextDecoration.underline,
                                                   fontSize: 16,
+                                                  color: Themes.bluishClr,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             const SizedBox(
@@ -204,6 +217,7 @@ class ReportDetails extends StatelessWidget {
                                                   decoration:
                                                       TextDecoration.underline,
                                                   fontSize: 16,
+                                                  color: Themes.bluishClr,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             const SizedBox(
