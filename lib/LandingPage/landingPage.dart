@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:demo_sih7/Screens/Home/homeScreen.dart';
 import 'package:demo_sih7/Screens/Reports/reportScreen.dart';
 import 'package:demo_sih7/Screens/Service/serviceScreen.dart';
@@ -7,8 +8,8 @@ import 'package:flutter/material.dart';
 import '../Screens/theme.dart';
 
 class MyLandingPage extends StatefulWidget {
-  const MyLandingPage({super.key});
-
+  final CameraDescription firstCam;
+  const MyLandingPage({super.key, required this.firstCam});
   @override
   State<MyLandingPage> createState() => _MyLandingPageState();
 }
@@ -16,13 +17,6 @@ class MyLandingPage extends StatefulWidget {
 class _MyLandingPageState extends State<MyLandingPage> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = [
-    HomeScreen(),
-    ReportScreen(),
-    UploadScreen(),
-    ServiceScreen(),
-    YouScreen(),
-  ];
   final List<String> _titleName = [
     "Home",
     "Reports & Diagnosis",
@@ -60,6 +54,15 @@ class _MyLandingPageState extends State<MyLandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      HomeScreen(),
+      ReportScreen(),
+      UploadScreen(
+        camera: widget.firstCam,
+      ),
+      ServiceScreen(),
+      YouScreen(),
+    ];
     double scrHeight = MediaQuery.of(context).size.height;
     double scrWidth = MediaQuery.of(context).size.width;
 
