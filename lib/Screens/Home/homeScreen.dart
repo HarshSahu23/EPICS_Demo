@@ -243,59 +243,6 @@ class _TabbedDropDownsState extends State<TabbedDropDowns> {
   }
 }
 
-// class DropDownCard extends StatefulWidget {
-//   final VoidCallback onToggle;
-//   final bool isExpanded;
-
-//   DropDownCard({
-//     Key? key,
-//     required this.onToggle,
-//     required this.isExpanded,
-//   }) : super(key: key);
-
-//   @override
-//   State<DropDownCard> createState() => _DropDownCardState();
-// }
-
-// class _DropDownCardState extends State<DropDownCard> {
-//   // bool _isVisible = true;
-//   // String hintText = "Collapse";
-//   // IconData hintIcon = Icons.keyboard_arrow_up;
-//   // void hideCard() {
-//   //   setState() {
-//   //     print("tried to collapse");
-//   //     _isVisible = !_isVisible;
-//   //     hintText = hintText == "Collapse" ? "Expand" : "Collapse";
-//   //     hintIcon = hintIcon == Icons.keyboard_arrow_up
-//   //         ? Icons.keyboard_arrow_down
-//   //         : Icons.keyboard_arrow_up;
-//   //   }
-//   // }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         // GestureDetector(
-//         //   onTap: hideCard,
-//         //   child: Row(
-//         //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         //     children: [
-//         //       Text(
-//         //         'Tap to $hintText',
-//         //         style: const TextStyle(fontSize: 20),
-//         //       ),
-//         //       Icon(hintIcon),
-//         //     ],
-//         //   ),
-//         // ),
-//         Visibility(visible: true, child: CustomCard())
-//       ],
-//     );
-//   }
-// }
-
 class CustomCard extends StatefulWidget {
   final String Item1Name;
   final String Item2Name;
