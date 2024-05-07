@@ -1,4 +1,4 @@
-# demo_sih7
+# EPICS_DEMO
 
 A new Flutter project.
 
