@@ -56,11 +56,11 @@ class _UploadScreenState extends State<UploadScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Symptoms',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Column(
                 children: symptomControllers.map((controller) {
                   return Row(
@@ -68,7 +68,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       Expanded(
                         child: TextFormField(
                           controller: controller,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Enter symptom',
                           ),
                         ),
@@ -91,8 +91,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 height: 300,
                 width: 300,
                 margin: EdgeInsets.symmetric(horizontal: 15),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 3)),
+                decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 3)),
                 child: FutureBuilder<void>(
                   future: _initializeControllerFuture,
                   builder: (context, snapshot) {
@@ -100,8 +99,17 @@ class _UploadScreenState extends State<UploadScreen> {
                       // If the Future is complete, display the preview.
                       return CameraPreview(_controller);
                     } else {
-                      // Otherwise, display a loading indicator.
-                      return const Center(child: CircularProgressIndicator());
+                      // Otherwise, display a loading indicator with text.
+                      return const Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min, // Keeps the column as small as possible
+                          children: [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 10), // Adds a bit of space
+                            Text("Loading camera"),
+                          ],
+                        ),
+                      );
                     }
                   },
                 ),
@@ -109,54 +117,58 @@ class _UploadScreenState extends State<UploadScreen> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      // Take the Picture in a try / catch block. If anything goes wrong,
-                      // catch the error.
-                      print("Got Image = " + gotImage.toString());
-                      try {
-                        // Ensure that the camera is initialized.
-                        await _initializeControllerFuture;
+              Container(
+                padding: const EdgeInsets.only(left: 5),
+                child: Row(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        // Take the Picture in a try / catch block. If anything goes wrong,
+                        // catch the error.
+                        print("Got Image = " + gotImage.toString());
+                        try {
+                          // Ensure that the camera is initialized.
+                          await _initializeControllerFuture;
 
-                        // Attempt to take a picture and get the file `image`
-                        // where it was saved.
-                        final image = await _controller.takePicture();
+                          // Attempt to take a picture and get the file `image`
+                          // where it was saved.
+                          final image = await _controller.takePicture();
 
-                        if (!mounted) return;
+                          if (!mounted) return;
 
-                        UpdateGotImageValue(image.path);
-                        print("Got Image in trying = " + gotImage.toString());
-                        // If the picture was taken, display it on a new screen.
-                      } catch (e) {
-                        // If an error occurs, log the error to the console.
-                        print(e);
-                      }
-                      print("Got Image after try = " + gotImage.toString());
-                    },
-                    icon: Icon(Icons.camera_alt),
-                    label: Text('Take Picture'),
-                  ),
-                  SizedBox(width: 20),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // Browse picture from local device and attach it
-                    },
-                    icon: Icon(Icons.photo_library),
-                    label: Text('Browse Picture'),
-                  ),
-                ],
+                          UpdateGotImageValue(image.path);
+                          print("Got Image in trying = " + gotImage.toString());
+                          // If the picture was taken, display it on a new screen.
+                        } catch (e) {
+                          // If an error occurs, log the error to the console.
+                          print(e);
+                        }
+                        print("Got Image after try = " + gotImage.toString());
+                      },
+                      icon: Icon(Icons.camera_alt),
+                      label: Text('Take Picture'),
+                    ),
+                    SizedBox(width: 20),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        // Browse picture from local device and attach it
+                      },
+                      icon: Icon(Icons.photo_library),
+                      label: Text('Browse Picture'),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
               Container(
+                height: 130,
+                margin: const EdgeInsets.only(left: 15),
                 child: FutureBuilder<void>(
                   future: _initializeControllerFuture,
                   builder: (context, snapshot) {
-                    if ((snapshot.connectionState == ConnectionState.done) &&
-                        (gotImage)) {
+                    if ((snapshot.connectionState == ConnectionState.done) && (gotImage)) {
                       // If the Future is complete, display the preview.
                       return Container(
                         width: 120,
@@ -165,13 +177,10 @@ class _UploadScreenState extends State<UploadScreen> {
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(4),
                         child: Column(
                           children: [
-                            Container(
-                                width: 90,
-                                height: 90,
-                                child: Image.file(File(ImagePath))),
+                            Container(width: 90, height: 90, child: Image.file(File(ImagePath))),
                             const Text(
                               "Image Captured !",
                               style: TextStyle(fontSize: 10),
@@ -183,21 +192,19 @@ class _UploadScreenState extends State<UploadScreen> {
                       // Otherwise, display a loading indicator.
                       return Container(
                         width: 120,
-                        height: 120,
+                        height: 130,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Column(
                           children: [
                             Container(
-                                width: 90,
-                                height: 90,
-                                child: Image.asset("assets/noImg.png")),
+                                width: 90, height: 90, child: Image.asset("assets/noImg.png")),
                             const Text(
                               "No Image Added !",
-                              style: TextStyle(fontSize: 10),
+                              style: TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
@@ -214,18 +221,18 @@ class _UploadScreenState extends State<UploadScreen> {
                   child: Center(
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Themes.pinkClr,
-                          fixedSize: Size(200, 50)),
+                          backgroundColor: Themes.pinkClr, fixedSize: const Size(220, 50)),
                       onPressed: () {
                         // Browse picture from local device and attach it
                       },
                       icon: const Icon(
                         Icons.upload,
                         size: 30,
+                        color: Colors.white,
                       ),
                       label: const Text(
                         'Upload Image',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
                   ))
