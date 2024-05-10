@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:demo_sih7/Screens/Upload/DiagnoseAPI.dart';
 import 'package:demo_sih7/Screens/Upload/widgets/SymptomsList.dart';
 import 'package:demo_sih7/Screens/theme.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _UploadScreenState extends State<UploadScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SymptomsList(onSymptomsUpdated: _handleSymptomsUpdated),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
               // Container(
               //   height: 300,
               //   width: 300,
@@ -155,7 +156,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
                 padding: const EdgeInsets.only(left: 5),
@@ -227,7 +228,7 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
 
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               Container(
                   margin: EdgeInsets.all(5),
@@ -238,8 +239,12 @@ class _UploadScreenState extends State<UploadScreen> {
                         fixedSize: const Size(220, 50),
                         elevation: gotImage ? 5.0 : 0.0,
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         // Browse picture from local device and attach it
+                        if (!gotImage) {
+                        } else {
+                          await sendImagePostRequest(ImagePath);
+                        }
                       },
                       icon: gotImage
                           ? const Icon(
