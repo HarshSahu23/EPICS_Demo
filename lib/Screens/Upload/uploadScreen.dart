@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:demo_sih7/Screens/Upload/DiagnoseAPI.dart';
+import 'package:demo_sih7/Screens/Upload/NoResultScreen.dart';
+import 'package:demo_sih7/Screens/Upload/ResultData.dart';
 import 'package:demo_sih7/Screens/Upload/widgets/SymptomsList.dart';
 import 'package:demo_sih7/Screens/theme.dart';
 import 'package:flutter/material.dart';
@@ -243,7 +246,24 @@ class _UploadScreenState extends State<UploadScreen> {
                         // Browse picture from local device and attach it
                         if (!gotImage) {
                         } else {
-                          await sendImagePostRequest(ImagePath);
+                          // String result = await sendImagePostRequest(ImagePath);
+                          String result =
+                              "{\"data\":{\"image_quality\":47.1406,\"body_part\":\"face\",\"results_english\":{\"acne\":0.241,\"rosacea\":0.7563,\"lupus_erythematosus\":0.0008},\"image_type\":\"skin_lesion\"},\"error_code\":0,\"error_detail\":{\"status_code\":200,\"code\":\"\",\"code_message\":\"\",\"message\":\"\"},\"log_id\":\"C563773C-41F3-5E96-849A-D8BDFCF5811A\",\"request_id\":\"C563773C-41F3-5E96-849A-D8BDFCF5811A\"}";
+                          Map<String, dynamic> ress = jsonDecode(result);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DiagnosisResultsUI(
+                                      diagnosisData: ress,
+                                    )),
+                          );
+                          if (result != "ERROR_TEST") {
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => NoResultsScreen()),
+                            );
+                          }
                         }
                       },
                       icon: gotImage

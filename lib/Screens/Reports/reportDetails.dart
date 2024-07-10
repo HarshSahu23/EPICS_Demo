@@ -57,7 +57,7 @@ class _ReportDetailsState extends State<ReportDetails> {
                   children: [
                     Container(
                       width: MediaQuery.sizeOf(context).width,
-                      height: 310,
+                      height: 311,
                       decoration: const BoxDecoration(
                           // color: Colors.white,
 
@@ -85,8 +85,7 @@ class _ReportDetailsState extends State<ReportDetails> {
                                   padding: EdgeInsets.all(2),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      border:
-                                          Border.all(color: Colors.black54)),
+                                      border: Border.all(color: Colors.black54)),
                                   child: Image.asset(
                                     'assets/chest.png',
                                     width: 50,
@@ -158,17 +157,14 @@ class _ReportDetailsState extends State<ReportDetails> {
                                     ),
                                     child: SingleChildScrollView(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 5, 5, 5),
+                                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             const Text(
                                               "About",
                                               style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.underline,
+                                                  decoration: TextDecoration.underline,
                                                   fontSize: 16,
                                                   color: Themes.bluishClr,
                                                   fontWeight: FontWeight.w600),
@@ -204,17 +200,14 @@ class _ReportDetailsState extends State<ReportDetails> {
                                     ),
                                     child: SingleChildScrollView(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 5, 5, 5),
+                                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             const Text(
                                               "Symptoms",
                                               style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.underline,
+                                                  decoration: TextDecoration.underline,
                                                   fontSize: 16,
                                                   color: Themes.bluishClr,
                                                   fontWeight: FontWeight.w600),
@@ -248,8 +241,7 @@ class _ReportDetailsState extends State<ReportDetails> {
                       width: MediaQuery.sizeOf(context).width,
                       height: 70,
                       decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(20)),
+                          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(20)),
                       child: const Padding(
                         padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                         child: Row(
